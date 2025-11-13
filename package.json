@@ -9,9 +9,19 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/accordion": "^2.2.24",
+    "@heroui/button": "^2.2.27",
+    "@heroui/input": "^2.4.28",
+    "@heroui/react": "^2.8.5",
+    "@heroui/system": "^2.4.23",
+    "@heroui/table": "^2.2.27",
+    "@heroui/theme": "^2.4.23",
+    "@redux-devtools/extension": "^3.3.0",
+    "framer-motion": "^12.23.24",
     "next": "16.0.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -20,7 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5"
   }
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "d6d52c0d-d179-4185-9b6b-469ebdaadb0c",
+    "name": "Mix falafel",
+    "price": 99,
+    "description": "A delicious mix of falafel balls served with fresh vegetables and a tangy tahini sauce."
+  },
+  {
+    "id": "1cbe15a0-f8be-4be0-a12f-e8dd04cdbffb",
+    "name": "Special falafel",
+    "price": 109,
+    "description": "A special falafel, for special people, served with a side of hummus and pickles."
+  },
+  {
+      "id": "3f4e2b7a-2c3d-4f5e-8a9b-1c2d3e4f5g6h",
+      "name": "Classic falafel",
+      "price": 89,
+      "description": "Traditional falafel served with lettuce, tomatoes, and a drizzle of tahini sauce."
+  },
+  {
+      "id": "4g5h6i7j-8k9l-0m1n-2o3p-4q5r6s7t8u9v",
+      "name": "Spicy falafel",
+      "price": 99,
+      "description": "Falafel with a spicy kick, served with jalapeños and a cooling yogurt sauce."
+  }
+]
