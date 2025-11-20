@@ -26,13 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css"
+              integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossOrigin="anonymous"/>
+        <title>
+            Falafel
+        </title>
+    </head>
+    <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <HeroUIProvider>
+    >
+    <HeroUIProvider>
         {children}
-      </HeroUIProvider>
-      </body>
+    </HeroUIProvider>
+    </body>
     </html>
   );
 }
