@@ -3,7 +3,7 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button} from "@heroui/react";
 import {Product} from "@/types/product";
 import {useState} from "react";
-import {createNewProduct, getAllProducts} from "@/data/products/product-actions";
+import {createNewProduct, getAllProducts, deleteProductById} from "@/data/products/product-actions";
 import {useProductStore} from "@/data/products/products-store";
 
 const styles = {
@@ -24,6 +24,8 @@ export function Products(productsProps: ProductsProps) {
     const [description, setDescription] = useState("");
     const [showCreate, setShowCreate] = useState(false);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleCreateNewProduct = () => {
         createNewProduct({
             productName: name,
@@ -37,9 +39,22 @@ export function Products(productsProps: ProductsProps) {
         setDescription("");
     }
 
+    const handleDeleteProduct = (id: string) => {
+        deleteProductById(id)
+            .then(() => getAllProducts())
+            .then((data) => { setProducts(data) });
+    }
+
+    const handleRefreshProducts = () => {
+        setIsLoading(true);
+        getAllProducts()
+            .then((data) => { setProducts(data) })
+            .then(() => setIsLoading(false));
+    }
 
     return (
         <Table className={styles.table}>
+
             <TableHeader className={"border-2 border-red-800"}>
                 <TableColumn className={styles.tableColumn}>PRODUCT</TableColumn>
                 <TableColumn className={styles.tableColumn}>PRICE</TableColumn>
@@ -62,37 +77,15 @@ export function Products(productsProps: ProductsProps) {
                                     <i className="fa fa-pencil-square-o text-gray-400" aria-hidden="true"></i>
                                 </span>
                                     <span className={"text-xl"}>
-                                    <i className="fa fa-trash-o text-red-600" aria-hidden="true"></i>
+                                        <Button onPress={() => handleDeleteProduct(product.id)}>
+                                            <i className="fa fa-trash-o text-red-600" aria-hidden="true"></i>
+                                        </Button>
                                 </span>
                             </div>
                         </TableCell>
                     </TableRow>
                 ))}
                 </>
-                <TableRow className={styles.tableRow + "rounded-2xl"} >
-                    <TableCell className={styles.tableCell}>
-                        <span>
-                            <button className={"text-5xl font-bold text-gray-500 hover:cursor-pointer"} onClick={() => setShowCreate(!showCreate)}>
-                                {showCreate ? ("-") : ("+")}
-                            </button>
-                        </span>
-                    </TableCell>
-                    <TableCell className={styles.tableCell}>
-                        <></>
-                    </TableCell>
-                    <TableCell className={styles.tableCell}>
-                        <></>
-                    </TableCell>
-                    <TableCell className={styles.tableCell}>
-                        <></>
-                    </TableCell>
-                    <TableCell className={styles.tableCell}>
-                        <></>
-                    </TableCell>
-                    <TableCell className={styles.tableCell}>
-                        <></>
-                    </TableCell>
-                </TableRow>
                 <>
                 {showCreate &&
                     <TableRow className={styles.tableRow + " shadow shadow-slate-300 rounded-2xl"} >
@@ -115,6 +108,32 @@ export function Products(productsProps: ProductsProps) {
                     </TableRow>
                 }
                 </>
+                <TableRow className={styles.tableRow + "rounded-2xl shadow shadow-slate-500 shadow-xs"} >
+                    <TableCell className={styles.tableCell}>
+                        <Button onPress={handleRefreshProducts} variant={"light"} className={"text-3xl"}>
+                            <i className={"fa fa-refresh" + (isLoading ? " animate-spin" : "")} aria-hidden="true"></i>
+                        </Button>
+                    </TableCell>
+                    <TableCell className={styles.tableCell}>
+                        <Button variant={"light"} className={"text-4xl"}
+                                onPress={() => setShowCreate(!showCreate)}>
+                            {showCreate ? (<i className={"fa fa-minus-square-o"} aria-hidden="true"></i>) : (
+                                <i className="fa fa-plus-square-o" aria-hidden="true"></i>)}
+                        </Button>
+                    </TableCell>
+                    <TableCell className={styles.tableCell}>
+                        <></>
+                    </TableCell>
+                    <TableCell className={styles.tableCell}>
+                        <></>
+                    </TableCell>
+                    <TableCell className={styles.tableCell}>
+                        <></>
+                    </TableCell>
+                    <TableCell className={styles.tableCell}>
+                        <></>
+                    </TableCell>
+                </TableRow>
             </TableBody>
         </Table>
     );

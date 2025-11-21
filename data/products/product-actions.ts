@@ -14,8 +14,17 @@ export const getAllProducts = async () => {
     return data;
 }
 
+export const deleteProductById = async (productId: string) => {
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/products/' + productId, {
+        method: 'DELETE',
+    });
+
+    if (!response || !response.ok) {
+        throw new Error('Failed to delete product');
+    }
+}
+
 export const createNewProduct = async (product: ProductRequest) => {
-    console.log("url: " + process.env.NEXT_PUBLIC_BACKEND_URL+'/products');
     const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/products', {
         method: 'POST',
         headers: {

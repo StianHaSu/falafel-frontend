@@ -1,8 +1,10 @@
+import {OrderStatus, PaymentStatus} from "@/types/enums";
+
 export interface Order {
     id: string;
     customer: Customer;
-    paymentStatus: string;
-    orderStatus: string;
+    paymentStatus: PaymentStatus;
+    orderStatus: OrderStatus;
     created: string;
     details: OrderDetails[];
 }
@@ -18,4 +20,9 @@ export interface OrderDetails {
     productName: string;
     orderId: string;
     quantity: string;
+}
+
+export interface PatchOrderRequest {
+    paymentStatus: string | null;
+    orderStatus: string | null;
 }

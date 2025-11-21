@@ -18,8 +18,7 @@ export default function Page(){
     return (
         <div>
             <CustomNavbar />
-            <Button color={"primary"} onPress={loadProducts}>Load all products</Button>
-            <div className={"flex justify-center"}>
+            <div className={"flex justify-center mt-12"}>
                 <Products products={products}></Products>
             </div>
         </div>
