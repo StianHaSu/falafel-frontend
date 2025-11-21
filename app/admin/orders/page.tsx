@@ -1,7 +1,7 @@
 'use client';
 
-import {CustomNavbar} from "@/components/custom-navbar";
-import {Orders} from "@/components/orders";
+import {CustomNavbar} from "@/components/admin/custom-navbar";
+import {Orders} from "@/components/admin/orders";
 import {Order} from "@/types/order";
 
 import {useOrderStore} from "@/data/orders/order-store";

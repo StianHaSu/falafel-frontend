@@ -1,4 +1,4 @@
-import {CustomNavbar} from "@/components/custom-navbar";
+import {CustomNavbar} from "@/components/admin/custom-navbar";
 
 export default function Page() {
     return (
