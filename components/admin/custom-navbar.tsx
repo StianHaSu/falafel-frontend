@@ -14,6 +14,7 @@ import Link from "next/link";
 import {Button} from "@heroui/react";
 import { usePathname } from 'next/navigation';
 import {Image} from "@heroui/image";
+import {SignedIn, SignedOut, SignInButton, SignOutButton} from "@clerk/nextjs";
 
 export function CustomNavbar() {
     const pathname = usePathname();
@@ -42,14 +43,16 @@ export function CustomNavbar() {
                     </NavbarItem>
                 </NavbarContent>
                 <NavbarContent justify="end">
-                    <NavbarItem className="hidden lg:flex">
-                        <Link href="#">Login</Link>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <Button as={Link} color="primary" href="#" variant="flat">
-                            Sign Up
-                        </Button>
-                    </NavbarItem>
+                    <SignedOut>
+                        <NavbarItem className="hidden lg:flex">
+                            <SignInButton />
+                        </NavbarItem>
+                    </SignedOut>
+                    <SignedIn>
+                        <NavbarItem>
+                            <SignOutButton />
+                        </NavbarItem>
+                    </SignedIn>
                 </NavbarContent>
             </Navbar>
         </div>

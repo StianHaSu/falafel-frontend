@@ -11,7 +11,7 @@ export default function Page(){
     const setProducts = useProductStore((state) => state.setProducts);
 
     const loadProducts = async () => {
-        setProducts(await getAllProducts());
+        setProducts(await getAllProducts(null));
     }
 
     return (
