@@ -1,4 +1,4 @@
-import {Product, ProductRequest} from "@/types/product";
+import {Product, ProductPatchRequest, ProductRequest} from "@/types/product";
 import products from "@/mock-data/product.json";
 import {PaymentStatus} from "@/types/enums";
 import { useAuth } from "@clerk/nextjs";
@@ -44,5 +44,20 @@ export const createNewProduct = async (product: ProductRequest, token: string) =
 
     if (!response || !response.ok) {
         throw new Error('Failed to create new product');
+    }
+}
+
+export const patchProductById = async (productId: string, productPatch: ProductPatchRequest, token: string) => {
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/products/'+productId, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(productPatch),
+    });
+
+    if (!response || !response.ok) {
+        throw new Error('Failed to patch product');
     }
 }

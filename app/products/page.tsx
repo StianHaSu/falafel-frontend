@@ -13,6 +13,7 @@ import {getAllProducts} from "@/data/products/product-actions";
 export default function Page(){
     const products: Product[] = useProductStore((state) => state.products);
     const setProducts = useProductStore((state) => state.setProducts);
+    const setShadowProducts = useProductStore((state) => state.setShadowProducts);
     const addProduct = useProductStore((state) => state.setProducts);
     const cart = useCartStore((state) => state.cart);
     const showCart = useCartStore((state) => state.showCart);
@@ -26,11 +27,19 @@ export default function Page(){
             })
     }, [setProducts]);
 
+    useEffect(() => {
+        console.log("Loading products...");
+        getAllProducts()
+            .then((fetchedProducts) => {
+                setShadowProducts(fetchedProducts);
+            })
+    }, [setShadowProducts]);
+
     return (
         <div>
             <CustomNavbar />
             <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6"}>
-                {products.map((product) =>
+                {products.values().map((product) =>
                     <ProductCard key={product.price} product={product}/>
                 )}
             </div>
